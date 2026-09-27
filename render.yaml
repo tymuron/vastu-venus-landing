@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: annaromeo-venus
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
+    # Без rewrite /* → /index.html: страница одна, клиентской маршрутизации нет,
+    # а rewrite отдаёт index.html вместо любого отсутствующего файла и прячет битые ссылки.
+    headers:
+      # Имена файлов без хэша — поэтому не immutable на год, а сутки.
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=86400
+      - path: /index.html
+        name: Cache-Control
+        value: no-cache
