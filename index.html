@@ -408,7 +408,7 @@ section{position:relative;overflow:hidden}
 }
 
 /* ══ FORMAT — «Как проходит мастер-класс» (cream) ════ */
-.format{background:var(--cream);color:var(--burgundy);padding:var(--section-y) 0}
+.format{background:var(--cream);color:var(--burgundy);padding:var(--section-y) 0 calc(var(--section-y) * .6)} /* the prize band below continues the second-broadcast card */
 .format .ghost{top:32px;right:-5%;font-size:clamp(150px,32vw,460px);color:var(--burgundy);opacity:.05}
 .format__in{position:relative;z-index:2}
 .steps{
@@ -438,8 +438,28 @@ section{position:relative;overflow:hidden}
   .step__text{margin-top:auto;padding-top:36px;font-size:15px}
 }
 
+/* ══ PRIZE — розыгрыш на втором эфире (burgundy band) ═ */
+.prize{background:var(--burgundy);color:var(--cream);padding:clamp(64px,9vw,128px) 0;text-align:center}
+.prize .ghost{bottom:-4%;right:-3%;font-size:clamp(170px,36vw,520px);color:var(--gold);opacity:.06}
+.prize__in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.prize__mark{display:flex;align-items:center;gap:14px;margin-bottom:clamp(28px,4vw,44px);color:var(--gold)}
+.prize__mark::before,.prize__mark::after{content:'';width:clamp(32px,6vw,72px);height:1px;background:currentColor}
+.prize__mark i{width:7px;height:7px;background:currentColor;transform:rotate(45deg);flex:none}
+.prize__text{
+  max-width:19em;
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(31px,3.4vw + 19px,64px);line-height:1.14;letter-spacing:-.012em;
+  text-wrap:balance;
+}
+.prize__text em{
+  /* the highlight always sits on its own line: no dependence on text-wrap support, same shape at every width */
+  display:block;margin:.08em 0;
+  font-size:1.14em;line-height:1.12;font-weight:500;font-style:italic;color:var(--gold);
+}
+@media (max-width:321px){.prize__text{font-size:28px}} /* iPhone SE 1st gen / small Androids */
+
 /* ══ BONUS (cream-warm, burgundy card) ═══════════════ */
-.bonus{background:var(--cream-warm);color:var(--burgundy);padding:calc(var(--section-y) * .7) 0 var(--section-y)} /* follows a light section: its top pad would double the gap */
+.bonus{background:var(--cream-warm);color:var(--burgundy);padding:var(--section-y) 0}
 .bonus .ghost{bottom:-18px;left:-2%;font-size:clamp(150px,30vw,420px);color:var(--burgundy);opacity:.06}
 .card{
   position:relative;z-index:2;max-width:1120px;margin:0 auto;
@@ -605,6 +625,15 @@ section{position:relative;overflow:hidden}
           <p class="step__text">Разберём реальные квартиры участниц <span class="nw">мастер-класса</span>: что получилось изменить за&nbsp;неделю, какие ошибки остались и&nbsp;что ещё можно сделать именно в&nbsp;вашем пространстве.</p>
         </li>
       </ol>
+    </div>
+  </section>
+
+  <!-- ══ РОЗЫГРЫШ ══ -->
+  <section class="prize on-dark" id="prize">
+    <div class="ghost" aria-hidden="true">prize</div>
+    <div class="wrap prize__in">
+      <span class="prize__mark rv" aria-hidden="true"><i></i></span>
+      <p class="prize__text rv d1">А среди тех, кто будет присутствовать онлайн на&nbsp;втором эфире, мы разыграем <em>2&nbsp;бесплатных&nbsp;места</em> в&nbsp;курсе «Васту&nbsp;дизайн»</p>
     </div>
   </section>
 
